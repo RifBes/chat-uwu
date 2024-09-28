@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/chat-uwu/static/css/main.6cdf48b1.css",
+    "main.js": "/chat-uwu/static/js/main.deab46d9.js",
+    "static/media/emoji.png": "/chat-uwu/static/media/emoji.fd49e1bf1f776c4bef6a.png",
+    "static/media/background.jpg": "/chat-uwu/static/media/background.567676b8bb311e9b670e.jpg",
+    "index.html": "/chat-uwu/index.html",
+    "main.6cdf48b1.css.map": "/chat-uwu/static/css/main.6cdf48b1.css.map",
+    "main.deab46d9.js.map": "/chat-uwu/static/js/main.deab46d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6cdf48b1.css",
+    "static/js/main.deab46d9.js"
+  ]
+}
