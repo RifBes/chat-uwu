@@ -1,0 +1,20 @@
+.label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: text;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.input {
+    &:focus ~ .label, &:not(:placeholder-shown).input:not(:focus) ~ label {
+        top: 10%;
+        transform: translateY(-60%);
+        font-size: 0.8rem;
+        left: 0.8rem;
+    }
+}

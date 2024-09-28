@@ -1,0 +1,27 @@
+$standart-color-message: #bd95ff;
+$mine-message-color: #ffc9f9;
+
+.message {
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: fit-content;
+    background-color: $standart-color-message;
+    display: flex;
+    flex-direction: column;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &-name {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+
+    &-mine {
+        background-color: $mine-message-color;
+        margin-left: auto;
+    }
+}

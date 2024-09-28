@@ -1,0 +1,91 @@
+$chatroom-color: #e2beff7c;
+$border-radius: 20px;
+$header-color: #e2bafc;
+$form-color: #4b48a1;
+$button-color: #baaeff;
+$button-color-hover: #9a8beb;
+
+.chat {
+    &-wrapper {
+        width: 90%;
+        border-radius: $border-radius;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $header-color;
+        padding: 10px 20px;
+        border-radius: $border-radius $border-radius 0 0;
+    }
+
+    &-messages {
+        height: 60vh;
+        padding: 20px;
+        background-color: $chatroom-color;
+        overflow-y: auto;
+    }
+
+    &-form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10px;
+        background-color: $form-color;
+        border-radius: 0 0 $border-radius $border-radius;
+
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
+    }
+
+    &-input {
+        flex: 1;
+    }
+
+    &-emojis {
+        position: relative;
+        padding: 10px;
+
+        &-img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+    }
+
+    &-emoji {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+
+        @media (max-width: 500px) {
+            left: -242%;
+        }
+    }
+
+
+    &-btn-left {
+        background-color: $button-color;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: $button-color-hover;
+        }
+    }
+
+
+    &-send {
+        &-btn {
+            background-color: $button-color;
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: $button-color-hover;
+            }
+        }
+    }
+}
