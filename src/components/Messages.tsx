@@ -1,7 +1,21 @@
 import React from "react";
 import "../styles/messages.scss";
 
-const Messages = ({ data, username }) => {
+export  interface MessageData {
+  data: {
+    user: {
+      username: string;
+    };
+    message: string;
+  }
+}
+
+interface MessagesProps {
+  data: MessageData[];
+  username: string;
+}
+
+const Messages = ({ data, username }: MessagesProps) => {
   return (
     <div className="message-container">
       {data.map((el, i) => {

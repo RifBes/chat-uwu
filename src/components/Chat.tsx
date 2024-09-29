@@ -5,25 +5,35 @@ import Input from "./Input";
 import EmojiPicker from "emoji-picker-react";
 
 import "../styles/chat.scss";
-import Messages from "./Messages";
+import Messages, { MessageData } from "./Messages";
 
-import emojiImg from "../img/emoji.png";
+// import emojiImg from "../img/emoji.png";
+import emojiImg from '../img/emoji.png'
 
-const socket = io.connect("http://localhost:5000");
 
-const Chat = () => {
+interface ChatState {
+  [key: string]: string;
+  room: string;
+  username: string;
+}
+
+interface ChatProps {}
+
+const socket = io("http://localhost:5000");
+// const socket = io.connect("http://localhost:5000");
+
+const Chat: React.FC<ChatProps> = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const [params, setParams] = useState({ room: "", username: "" });
-  const [state, setState] = useState([]);
-
-  const [message, setMessage] = useState("");
-  const [isOpenEmoji, setOpenEmoji] = useState(false);
-  const [users, setUsers] = useState("1");
+  const [params, setParams] = useState<ChatState>({ room: "", username: "" });
+  const [state, setState] = useState<MessageData[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [isOpenEmoji, setOpenEmoji] = useState<boolean>(false);
+  const [users, setUsers] = useState<number>(1);
 
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
-    setParams(searchParams);
+    setParams(searchParams as ChatState);
 
     // инициализация ивента, который слушается на сервере
     socket.emit("join", searchParams);
@@ -31,28 +41,26 @@ const Chat = () => {
 
   //   получили послание, когда юзер только зашёл (message)
   useEffect(() => {
-    socket.on("message", (data) => {
+    socket.on("message", (data: MessageData) => {
       setState((_state) => [..._state, data]);
     });
   }, []);
 
   useEffect(() => {
-    socket.on("Room", ({ data: { users } }) => {
-      setUsers(users.length);
+    socket.on("Room", ({ data: { users: usersCount } }: { data: { users: number[] } }) => {
+      setUsers(usersCount.length);
     });
   }, []);
-
-  // console.log(state);
 
   const leftRoom = () => {
     socket.emit("leftRoom", { params });
     navigate("/");
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!message) {
       return;
@@ -62,7 +70,7 @@ const Chat = () => {
     setMessage("");
   };
 
-  const onEmojiClick = ({ emoji }) => {
+  const onEmojiClick = ({ emoji }: { emoji: string }) => {
     setMessage(`${message} ${emoji}`);
   };
 
@@ -103,7 +111,6 @@ const Chat = () => {
           <button
             className="btn chat-send-btn"
             type="submit"
-            onSubmit={handleSubmit}
           >
             Send a message
           </button>

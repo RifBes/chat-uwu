@@ -3,23 +3,32 @@ import "../styles/join.scss";
 import { Link } from "react-router-dom";
 import Input from "./Input";
 
+export interface Fields {
+  USERNAME: string;
+  ROOM: string;
+}
+
+export interface JoinState {
+  [key: string]: string;
+}
+
 const FIELSD = {
   USERNAME: "username",
   ROOM: "room",
 };
 
-const Join = () => {
+const Join: React.FC = () => {
   const { USERNAME, ROOM } = FIELSD;
-  const [values, setValues] = useState({ [USERNAME]: "", [ROOM]: "" });
+  const [values, setValues] = useState<JoinState>({ [USERNAME]: "", [ROOM]: "" });
   const [warning, setWarning] = useState("");
 
   //   target - взяли инфу с input
-  const handleChange = ({ target: { value, name } }) => {
+  const handleChange = ({ target: { value, name } }: React.ChangeEvent<HTMLInputElement>) => {
     setWarning("");
     setValues({ ...values, [name]: value });
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     // проверяем все ли поля ввелись
     const isDisabled = Object.values(values).some((value) => !value);
 

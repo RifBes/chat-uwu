@@ -1,6 +1,15 @@
 import React from "react";
 import "../styles/input.scss";
 
+type InputProps = {
+  className?: string;
+  classNameWrapper?: string;
+  name: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  inits: string;
+}
+
 const Input = ({
   className,
   classNameWrapper,
@@ -8,7 +17,7 @@ const Input = ({
   handleChange,
   placeholder,
   inits,
-}) => {
+}: InputProps) => {
   return (
     <div className={`input-wrapper ${classNameWrapper || ""}`}>
       <input
